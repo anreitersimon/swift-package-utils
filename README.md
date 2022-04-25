@@ -21,10 +21,10 @@ Add this to the dependencies section of your `Package.swift`
 
 ### 
 
-```
+```shell
 swift package create-artifact-bundle\
- --archive-name <archive-name>\ # optional: will use "${package.displayName}-${version}" by default
- --package-version 1.0.0\ # required
+ --archive-name <archive-name>\                     # optional: will use "${package.displayName}-${version}" by default
+ --package-version 1.0.0\                           # required
  --product <product-name> --produt <product-name 2> # you can pass multiple products here
 ```
 
