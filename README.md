@@ -19,7 +19,7 @@ Add this to the dependencies section of your `Package.swift`
 
 ## Plugins
 
-### 
+### CreateArtifactBundle
 
 ```shell
 swift package create-artifact-bundle\
@@ -28,3 +28,4 @@ swift package create-artifact-bundle\
  --product <product-name> --produt <product-name 2> # you can pass multiple products here
 ```
 
+This will generate a artifact bundle at `.build/plugins/CreateArtifactBundle/outputs/<archive-name>.zip`
