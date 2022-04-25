@@ -65,9 +65,5 @@ struct ArtifactBundle: Codable {
 
             try data.write(to: url.appendingPathComponent("info.json"))
         }
-
-        func write(to outputURL: URL) throws {
-
-        }
     }
 }
