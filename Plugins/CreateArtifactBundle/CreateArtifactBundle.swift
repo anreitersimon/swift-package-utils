@@ -49,7 +49,7 @@ struct CreateArtifactBundle: CommandPlugin {
                 .compactMap { $0 as? ExecutableProduct }
             let otherProducts =
                 matchingProducts
-                .filter { $0 is ExecutableProduct }
+                .filter { !($0 is ExecutableProduct) }
 
             products = executableProducts
 
