@@ -49,7 +49,7 @@ struct ArtifactBundle: Codable {
                 let url = URL(fileURLWithPath: file)
                 
                 try FileManager.default.copyItem(
-                    at: artifactURL,
+                    at: url,
                     to: targetDirectoryURL.appendingPathComponent(url.lastPathComponent)
                 )
             }
