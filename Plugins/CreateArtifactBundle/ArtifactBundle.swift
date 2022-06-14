@@ -25,13 +25,15 @@ struct ArtifactBundle: Codable {
         var info: Info = Info(artifacts: [:])
 
         mutating func addArtifact(
-            _ artifact: PackageManager.BuildResult.BuiltArtifact
+            _ artifact: PackageManager.BuildResult.BuiltArtifact,
+            additionalFiles: [String]
         ) throws {
             let name = artifact.path.stem
             let artifactURL = URL(fileURLWithPath: artifact.path.string)
-            let path = "\(name)-\(version)-macos/bin/\(name)"
+            let path = "\(name)-\(version)-macos/bin/"
+            let targetDirectoryURL = url.appendingPathComponent("\(name)-\(version)-macos/bin")
 
-            let targetURL = url.appendingPathComponent(path)
+            let targetURL = targetDirectoryURL.appendingPathComponent(name)
 
             try FileManager.default.createDirectory(
                 at: targetURL.deletingLastPathComponent(),
@@ -42,6 +44,15 @@ struct ArtifactBundle: Codable {
                 at: artifactURL,
                 to: targetURL
             )
+            
+            for file in additionalFiles {
+                let url = URL(fileURLWithPath: file)
+                
+                try FileManager.default.copyItem(
+                    at: artifactURL,
+                    to: targetDirectoryURL.appendingPathComponent(url.lastPathComponent)
+                )
+            }
 
             info.artifacts[name] = ArtifactBundle.Artifact(
                 version: version,

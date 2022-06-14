@@ -17,6 +17,7 @@ struct CreateArtifactBundle: CommandPlugin {
         let productArgs = extractor.extractOption(named: "product")
         let versionArgs = extractor.extractOption(named: "package-version")
         let archiveNameArgs = extractor.extractOption(named: "archive-name")
+        let additionalFiles = extractor.extractOption(named: "copy-additional-files")
 
         let archiveName: String
         let version: String
@@ -84,7 +85,7 @@ struct CreateArtifactBundle: CommandPlugin {
             }
 
             for artifact in result.builtArtifacts {
-                try bundle.addArtifact(artifact)
+                try bundle.addArtifact(artifact, additionalFiles: additionalFiles)
             }
         }
 
