@@ -30,7 +30,7 @@ struct ArtifactBundle: Codable {
         ) throws {
             let name = artifact.path.stem
             let artifactURL = URL(fileURLWithPath: artifact.path.string)
-            let path = "\(name)-\(version)-macos/bin/"
+            let path = "\(name)-\(version)-macos/bin/\(name)"
             let targetDirectoryURL = url.appendingPathComponent("\(name)-\(version)-macos/bin")
 
             let targetURL = targetDirectoryURL.appendingPathComponent(name)
